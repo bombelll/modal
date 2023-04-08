@@ -11,9 +11,9 @@ const removeClass = (element, style) => {
 }
 
 const styles = {
-    active:'active',
-    opened:'opened',
-    closed:'closed',
+    active: 'active',
+    opened: 'opened',
+    closed: 'closed',
 }
 
 openModalBtn.addEventListener('click', () => {
@@ -28,4 +28,15 @@ closeModalBtn.addEventListener('click', () => {
         removeClass(modal, styles.closed);
         removeClass(modal, styles.opened);
     }, 100);
+})
+
+document.addEventListener('keyup', e => {
+    if (e.key.toLocaleLowerCase() === "escape") {
+        addClass(modal, styles.closed);
+        removeClass(document.body, styles.active);
+        setTimeout(() => {
+            removeClass(modal, styles.closed);
+            removeClass(modal, styles.opened);
+        }, 100);
+    }
 })
